@@ -16,11 +16,11 @@ async def on_message(message):
         return
 
     if message.content.startswith('!recap'):
-        [cmd, url, perc] = split_message = message.content.split(" ")
+        split_message = message.content.split(" ")
         if len(split_message) == 2 or len(split_message) == 3:
-            r = recapper.Recapper(url=url)
+            r = recapper.Recapper(url=split_message[1])
             r.process()
-            perc = 0.22 if len(split_message) == 2 else perc = perc
+            perc = 0.22 if len(split_message) == 2 else split_message[2]
             recap = r.summarize(perc=perc)
             max_len=1500
             messages = [recap[i:i + max_len] for i in range(0, len(str), max_len)]
