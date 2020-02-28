@@ -22,7 +22,10 @@ async def on_message(message):
             r.process()
             perc = 0.22 if len(split_message) == 2 else perc = perc
             recap = r.summarize(perc=perc)
-            await message.channel.send(recap)
+            max_len=1500
+            messages = [recap[i:i + max_len] for i in range(0, len(str), max_len)]
+            for part,m in enumerate(messages):
+                await message.channel.send(f"PART {part}\n\n{recap}")
         else:
             await message.channel.send(
                 'Wrong syntax, send the link as "!recap <your article> <optional but recommended: a float between 0 '
