@@ -25,7 +25,7 @@ async def on_message(message):
             max_len=1500
             messages = [recap[i:i + max_len] for i in range(0, len(recap), max_len)]
             for part,m in enumerate(messages):
-                await message.channel.send(f"PART {part}\n\n{m}")
+                await message.channel.send(m)
         else:
             await message.channel.send(
                 'Wrong syntax, send the link as "!recap <your article> <optional but recommended: a float between 0 '
