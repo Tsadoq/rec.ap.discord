@@ -23,7 +23,7 @@ async def on_message(message):
             perc = 0.22 if len(split_message) == 2 else split_message[2]
             recap = r.summarize(perc=perc)
             max_len=1500
-            messages = [recap[i:i + max_len] for i in range(0, len(str), max_len)]
+            messages = [recap[i:i + max_len] for i in range(0, len(recap), max_len)]
             for part,m in enumerate(messages):
                 await message.channel.send(f"PART {part}\n\n{recap}")
         else:
